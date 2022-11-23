@@ -1,0 +1,14 @@
+{
+  "_output_dir": "/Users/pawlu/Documents/personal/cookiecutter-dash-docset",
+  "_template": "https://github.com/paw-lu/cookiecutter-dash-docset",
+  "documentation_url": "https://www.pymc.io/welcome.html",
+  "github_username": "paw-lu",
+  "installable_name": "pymc",
+  "library_name": "pymc",
+  "library_owner": "pymc-devs",
+  "library_repository_name": "pymc",
+  "library_version": "4.4.0",
+  "project_name": "pymc-dash-docset",
+  "python_version": "3.10",
+  "your_name": "Paulo S. Costa"
+}
