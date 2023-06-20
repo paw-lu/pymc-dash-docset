@@ -64,7 +64,7 @@ def clone(session: Session) -> None:
             raise ValueError("Did not find a tag name for the latest release")
 
 
-@nox.session(python=PYTHON, tags=["build"])
+@nox.session(python=PYTHON, tags=["build"], venv_backend="conda")
 def docs(session: Session) -> None:
     """Build pymc's docs.
 
@@ -72,8 +72,17 @@ def docs(session: Session) -> None:
     https://www.pymc.io/projects/docs/en/latest/contributing/build_docs.html
     """
     with session.chdir(LIBRARY_REPOSITORY):
-        session.install("--requirement", "requirements-dev.txt")
-        session.install("numpyro")
+        # conda_install runs `conda install`, which is incompatible with
+        # environment.yml files
+        session.run(
+            "conda",
+            "env",
+            "update",
+            "--prefix",
+            session.virtualenv.location,
+            "--file",
+            "conda-envs/environment-docs.yml",
+        )
         session.install("--editable", ".")
         session.run("make", "clean", external=True)
         session.run("make", "html", external=True)
